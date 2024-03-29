@@ -1,6 +1,7 @@
 import { createServer } from 'http';
-import { initExpressApp } from './express-app';
+import 'dotenv/config'
 
+import { initExpressApp } from './express-app';
 
 (async () => {
     const app = await initExpressApp();
@@ -13,5 +14,4 @@ import { initExpressApp } from './express-app';
     httpServer.listen(
       { port },
       () => console.log(`\n🚀      Server is now running on http://localhost:${port}`));
-
 })();

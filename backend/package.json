@@ -9,7 +9,8 @@
     "watch:typegen": "npm run typegen -- --watch 'src/**/*.graphql'",
     "start-server": "ts-node src/server.ts --compile-only",
     "typegen": "graphql-codegen --config codegen.yml",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "knex": "knex"
   },
   "keywords": [],
   "author": "Andy Berry <andy@teamberry.io> (https://andy-berry.co.uk/)",
@@ -30,9 +31,12 @@
     "@parcel/watcher": "~2.4.1",
     "compression": "~1.7.4",
     "cors": "~2.8.5",
+    "dotenv": "~16.4.5",
     "express": "~4.19.2",
     "graphql": "~16.8.1",
     "http": "~0.0.1-security",
+    "knex": "~3.1.0",
+    "pg": "~8.11.3",
     "ts-node": "~10.9.2",
     "typescript": "~5.4.3"
   }
