@@ -6,7 +6,7 @@ import { initExpressApp } from './express-app';
 (async () => {
     const app = await initExpressApp();
     const httpServer = createServer(app);
-    const port = 4000;
+    const port = parseInt(process.env.PORT || '4000', 10);
 
     httpServer.on('error', (e) => {
         console.error(`Server error - ${e.message}`);

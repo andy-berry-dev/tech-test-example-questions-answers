@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+
+    frontend:
+        build: frontend
+        ports:
+            - "3000:80"
+        deploy:
+            resources:
+                limits:
+                    cpus: "0.5"
+                    memory: 200M
+                reservations:
+                    memory: 50M
+
+    backend:
+        build: backend
+        environment:
+            - DB_HOST=db
+            - DB_PORT=5432
+            - DB_USER=developer
+            - DB_NAME=questions_answers
+            - DB_PASS=supersecretpassword
+        ports:
+            - "4000:80"
+        deploy:
+            resources:
+                limits:
+                    cpus: "0.5"
+                    memory: 200M
+                reservations:
+                    memory: 50M
+
+    db:
+        extends:
+            file: docker-compose.yml
+            service: db
