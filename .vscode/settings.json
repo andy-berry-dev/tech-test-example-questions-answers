@@ -1,0 +1,6 @@
+{
+    "cSpell.enabled": false,
+    "prettier.prettierPath": "./node_modules/prettier/index.cjs",
+    "eslint.runtime": "",
+    "typescript.tsdk": "node_modules/typescript/lib"
+}

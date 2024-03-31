@@ -1,5 +1,5 @@
 import { createServer } from 'http';
-import 'dotenv/config'
+import 'dotenv/config';
 
 import { initExpressApp } from './express-app';
 
@@ -9,9 +9,11 @@ import { initExpressApp } from './express-app';
     const port = 4000;
 
     httpServer.on('error', (e) => {
-      console.error(`Server error - ${e.message}`);
-    })
-    httpServer.listen(
-      { port },
-      () => console.log(`\n🚀      Server is now running on http://localhost:${port}`));
+        console.error(`Server error - ${e.message}`);
+    });
+    httpServer.listen({ port }, () =>
+        console.log(
+            `\n🚀      Server is now running on http://localhost:${port}`,
+        ),
+    );
 })();

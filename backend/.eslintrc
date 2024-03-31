@@ -1,0 +1,39 @@
+{
+    "root": true,
+    "extends": [
+        "airbnb",
+        "airbnb-typescript",
+        "plugin:prettier/recommended",
+    ],
+    "parserOptions": {
+        "project": "./tsconfig.json",
+    },
+    "rules": {
+        "react/function-component-definition": [
+            "error",
+            {
+                "namedComponents": [
+                    "function-declaration",
+                    "function-expression",
+                    "arrow-function",
+                ],
+                "unnamedComponents": ["function-expression", "arrow-function"],
+            },
+        ],
+        "no-restricted-exports": "off",
+        "import/prefer-default-export": "off",
+    },
+    "overrides": [
+        {
+            "files": ["db/**"],
+            "rules": {
+                "import/no-extraneous-dependencies": [
+                    "error",
+                    {
+                        "devDependencies": true,
+                    },
+                ],
+            },
+        },
+    ],
+}
