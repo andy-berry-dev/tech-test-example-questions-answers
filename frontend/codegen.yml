@@ -1,0 +1,11 @@
+schema: '../backend/src/schema.graphql'
+generates:
+    ./src/__generated__/types/graphql.ts:
+        documents: './src/**/!(*.d|*.test).(ts|tsx)'
+        plugins:
+            - 'typescript'
+            - 'typescript-operations'
+        config:
+            preResolveTypes: true
+
+        # config:

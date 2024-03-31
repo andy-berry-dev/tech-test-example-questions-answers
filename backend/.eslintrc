@@ -5,6 +5,9 @@
         "airbnb-typescript",
         "plugin:prettier/recommended",
     ],
+    "env": {
+        "mocha": true,
+    },
     "parserOptions": {
         "project": "./tsconfig.json",
     },
@@ -22,6 +25,7 @@
         ],
         "no-restricted-exports": "off",
         "import/prefer-default-export": "off",
+        "import/no-cycle": ["off"],
     },
     "overrides": [
         {

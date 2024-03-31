@@ -4,3 +4,4 @@ static
 node_modules
 *.md
 *.mdx
+__generated__

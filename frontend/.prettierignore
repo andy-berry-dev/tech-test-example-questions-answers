@@ -4,3 +4,4 @@ node_modules/
 *.md
 *.mdx
 _redirects
+__generated__
