@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "concurrently  --names \"Server,TypeGen\" -c \"bgMagenta,bgBlue\" \"npm run watch:server\" \"npm run watch:typegen\"",
+        "start": "npm run typegen && concurrently  --names \"Server,TypeGen\" -c \"bgMagenta,bgBlue\" \"npm run watch:server\" \"npm run watch:typegen\"",
         "watch:server": "nodemon 'src/server.ts' --exec 'ts-node' src/server.ts -e ts",
         "watch:typegen": "npm run typegen -- --watch 'src/**/*.graphql'",
         "start-server": "ts-node src/server.ts --compile-only",

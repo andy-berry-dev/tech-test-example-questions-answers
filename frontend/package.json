@@ -39,7 +39,7 @@
         "web-vitals": "~2.1.4"
     },
     "scripts": {
-        "start": "concurrently  --names \"Client,TypeGen\" -c \"bgMagenta,bgBlue\" \"npm run watch:react\" \"npm run watch:typegen\"",
+        "start": "npm run typegen && concurrently  --names \"Client,TypeGen\" -c \"bgMagenta,bgBlue\" \"npm run watch:react\" \"npm run watch:typegen\"",
         "watch:react": "react-scripts start",
         "watch:typegen": "npm run typegen -- --watch '../backend/**/*.graphql'",
         "build": "react-scripts build",
