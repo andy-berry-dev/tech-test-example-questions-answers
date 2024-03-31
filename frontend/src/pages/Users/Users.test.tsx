@@ -2,59 +2,55 @@ import React from 'react';
 import { getByText, render, screen, waitFor } from '@testing-library/react';
 import { MockedProvider, MockedProviderProps } from '@apollo/client/testing';
 import { GraphQLError } from 'graphql';
-import Questions, { getQuestionsQuery } from './Questions';
-import { GetQuestionsQuery } from '../__generated__/types/graphql';
+import Users, { getUsersQuery } from './Users';
+import { GetUsersQuery } from '../../__generated__/types/graphql';
 
-describe('Questions page', () => {
-    it('renders a list of questions', async () => {
+describe('Users page', () => {
+    it('renders a list of users', async () => {
         const graphlMocks: MockedProviderProps['mocks'] = [
             {
                 request: {
-                    query: getQuestionsQuery,
+                    query: getUsersQuery,
                 },
                 result: {
                     data: {
-                        questions: [
-                            { id: '1', text: 'what is your favourite colour?' },
-                            { id: '2', text: 'what is your favourite food?' },
+                        users: [
+                            { id: '1', name: 'user 1' },
+                            { id: '2', name: 'user 2' },
                         ],
-                    } as GetQuestionsQuery,
+                    } as GetUsersQuery,
                 },
             },
         ];
         render(
             <MockedProvider mocks={graphlMocks} addTypename={false}>
-                <Questions />
+                <Users />
             </MockedProvider>,
         );
         await waitFor(() => {
             expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
         });
-        expect(
-            screen.getByText('what is your favourite colour?'),
-        ).toBeInTheDocument();
-        expect(
-            screen.getByText('what is your favourite food?'),
-        ).toBeInTheDocument();
+        expect(screen.getByText('user 1')).toBeInTheDocument();
+        expect(screen.getByText('user 2')).toBeInTheDocument();
     });
 
     it('renders a spinner while loading', async () => {
         const graphlMocks: MockedProviderProps['mocks'] = [
             {
                 request: {
-                    query: getQuestionsQuery,
+                    query: getUsersQuery,
                 },
                 result: {
                     data: {
-                        questions: [],
-                    } as GetQuestionsQuery,
+                        users: [],
+                    } as GetUsersQuery,
                 },
                 delay: 500,
             },
         ];
         render(
             <MockedProvider mocks={graphlMocks} addTypename={false}>
-                <Questions />
+                <Users />
             </MockedProvider>,
         );
         expect(screen.queryByRole('progressbar')).toBeInTheDocument();
@@ -64,7 +60,7 @@ describe('Questions page', () => {
         const graphlMocks: MockedProviderProps['mocks'] = [
             {
                 request: {
-                    query: getQuestionsQuery,
+                    query: getUsersQuery,
                 },
                 result: {
                     data: [],
@@ -75,7 +71,7 @@ describe('Questions page', () => {
         ];
         render(
             <MockedProvider mocks={graphlMocks} addTypename={false}>
-                <Questions />
+                <Users />
             </MockedProvider>,
         );
         await waitFor(() => {
@@ -84,7 +80,7 @@ describe('Questions page', () => {
         const errorDialog = await screen.findByRole('alert');
 
         expect(
-            getByText(errorDialog, 'Error loading questions'),
+            getByText(errorDialog, 'Error loading users'),
         ).toBeInTheDocument();
         expect(
             getByText(errorDialog, 'Something went wrong'),

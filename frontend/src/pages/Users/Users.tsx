@@ -1,9 +1,9 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { VStack, Box } from '@chakra-ui/react';
-import Loader from '../components/Loader';
-import Error from '../components/Error';
-import { GetUsersQuery } from '../__generated__/types/graphql';
+import Loader from '../../components/Loader';
+import Error from '../../components/Error';
+import { GetUsersQuery } from '../../__generated__/types/graphql';
 
 export const getUsersQuery = gql`
     query GetUsers {
