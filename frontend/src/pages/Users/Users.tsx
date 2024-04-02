@@ -28,9 +28,22 @@ const Users = () => {
 
     return (
         <>
-            <Heading as="h1">Users</Heading>
-            <VStack px={3} py={4} alignItems="flex-start">
-                {data?.users.map(({ id, name }) => <Box key={id}>{name}</Box>)}
+            <Heading as="h1" mb={3}>
+                Users
+            </Heading>
+            <VStack
+                alignItems="flex-start"
+                sx={{
+                    '& > div:nth-of-type(even)': {
+                        bg: 'blackAlpha.100',
+                    },
+                }}
+            >
+                {data?.users.map(({ id, name }) => (
+                    <Box key={id} p={2} w="100%">
+                        {name}
+                    </Box>
+                ))}
             </VStack>
         </>
     );

@@ -78,40 +78,50 @@ const Questions = () => {
 
     return (
         <>
-            <Flex justifyContent="space-between">
-                <Heading as="h1">Questions</Heading>
+            <Heading as="h1" mb={3}>
+                Questions
+            </Heading>
+
+            <Flex mb={4}>
+                <Input
+                    value={newQuestionText}
+                    onChange={(e) => setNewQuestionText(e.target.value)}
+                    data-testid="question-input"
+                    placeholder="What is a question?"
+                />
+                <Button
+                    onClick={addQuestionCallback}
+                    isLoading={addQuestionLoading}
+                    loadingText="Adding question..."
+                    isDisabled={newQuestionText.length < 1}
+                >
+                    Add Question
+                </Button>
             </Flex>
-            <VStack px={3} py={4} alignItems="flex-start">
+            {addQuestionData && <Text as="i">A new question was added!</Text>}
+            {addQuestionLoading && <Text as="i">Adding question...</Text>}
+            {addQuestionError && (
+                <Error
+                    title="Error adding a question"
+                    description={addQuestionError.message}
+                    showClose
+                    onClose={() => resetAddQuestionMutation()}
+                />
+            )}
+
+            <VStack
+                alignItems="flex-start"
+                sx={{
+                    '& > div:nth-of-type(even)': {
+                        bg: 'blackAlpha.100',
+                    },
+                }}
+            >
                 {data?.questions.map(({ id, text }) => (
-                    <Box key={id}>{text}</Box>
+                    <Box key={id} p={2} w="100%">
+                        {text}
+                    </Box>
                 ))}
-                <Flex>
-                    <Input
-                        value={newQuestionText}
-                        onChange={(e) => setNewQuestionText(e.target.value)}
-                        data-testid="question-input"
-                    />
-                    <Button
-                        onClick={addQuestionCallback}
-                        isLoading={addQuestionLoading}
-                        loadingText="Adding question..."
-                        isDisabled={newQuestionText.length < 1}
-                    >
-                        Add Question
-                    </Button>
-                </Flex>
-                {addQuestionData && (
-                    <Text as="i">A new question was added!</Text>
-                )}
-                {addQuestionLoading && <Text as="i">Adding question...</Text>}
-                {addQuestionError && (
-                    <Error
-                        title="Error adding a question"
-                        description={addQuestionError.message}
-                        showClose
-                        onClose={() => resetAddQuestionMutation()}
-                    />
-                )}
             </VStack>
         </>
     );
