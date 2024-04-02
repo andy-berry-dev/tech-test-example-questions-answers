@@ -12,3 +12,7 @@ type Query {
     users: [User!]!
     questions: [Question!]!
 }
+
+type Mutation {
+    addQuestion(text: String!): Question!
+}

@@ -14,6 +14,16 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type Mutation = {
+  __typename?: 'Mutation';
+  addQuestion: Question;
+};
+
+
+export type MutationAddQuestionArgs = {
+  text: Scalars['String']['input'];
+};
+
 export type Query = {
   __typename?: 'Query';
   questions: Array<Question>;
@@ -36,6 +46,13 @@ export type GetQuestionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetQuestionsQuery = { __typename?: 'Query', questions: Array<{ __typename?: 'Question', id: string, text: string }> };
+
+export type AddQuestionMutationVariables = Exact<{
+  text: Scalars['String']['input'];
+}>;
+
+
+export type AddQuestionMutation = { __typename?: 'Mutation', addQuestion: { __typename?: 'Question', id: string, text: string } };
 
 export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
