@@ -1,6 +1,6 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
-import { VStack, Box } from '@chakra-ui/react';
+import { VStack, Box, Heading } from '@chakra-ui/react';
 import Loader from '../../components/Loader';
 import Error from '../../components/Error';
 import { GetQuestionsQuery } from '../../__generated__/types/graphql';
@@ -31,9 +31,14 @@ const Questions = () => {
     }
 
     return (
-        <VStack px={3} py={4} alignItems="flex-start">
-            {data?.questions.map(({ id, text }) => <Box key={id}>{text}</Box>)}
-        </VStack>
+        <>
+            <Heading as="h1">Questions</Heading>
+            <VStack px={3} py={4} alignItems="flex-start">
+                {data?.questions.map(({ id, text }) => (
+                    <Box key={id}>{text}</Box>
+                ))}
+            </VStack>
+        </>
     );
 };
 

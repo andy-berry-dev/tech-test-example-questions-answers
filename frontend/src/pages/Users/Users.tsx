@@ -1,6 +1,6 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
-import { VStack, Box } from '@chakra-ui/react';
+import { VStack, Box, Heading } from '@chakra-ui/react';
 import Loader from '../../components/Loader';
 import Error from '../../components/Error';
 import { GetUsersQuery } from '../../__generated__/types/graphql';
@@ -27,9 +27,12 @@ const Users = () => {
     }
 
     return (
-        <VStack px={3} py={4} alignItems="flex-start">
-            {data?.users.map(({ id, name }) => <Box key={id}>{name}</Box>)}
-        </VStack>
+        <>
+            <Heading as="h1">Users</Heading>
+            <VStack px={3} py={4} alignItems="flex-start">
+                {data?.users.map(({ id, name }) => <Box key={id}>{name}</Box>)}
+            </VStack>
+        </>
     );
 };
 

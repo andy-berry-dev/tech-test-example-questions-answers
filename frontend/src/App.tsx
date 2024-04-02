@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
-import { ChakraProvider, Heading } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import Users from './pages/Users';
-import Questions from './pages/Questions';
+import AppPageProvider from './contexts/AppPageContext';
+import AppContents from './AppContents';
 
 const App = () => {
     const client = useMemo(
@@ -13,13 +13,13 @@ const App = () => {
             }),
         [],
     );
+
     return (
         <ChakraProvider>
             <ApolloProvider client={client}>
-                <Heading as="h1">Users</Heading>
-                <Users />
-                <Heading as="h1">Questions</Heading>
-                <Questions />
+                <AppPageProvider>
+                    <AppContents />
+                </AppPageProvider>
             </ApolloProvider>
         </ChakraProvider>
     );
